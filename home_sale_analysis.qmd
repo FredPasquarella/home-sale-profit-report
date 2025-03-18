@@ -37,7 +37,7 @@ While sale prices varied, the *comparables* ranged from **\$799,000 on the lower
 ### As Is to Minimal Repairs
 
 | Address                                                                                                                                                                                                                                                                                                                                                                                                   | Bed | Bath | Sq Feet | Sale Price |
-|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:---:|:----:|:-------:|:----------:|
+|------------------------------------|:----------:|:--------:|:-------:|:--------------:|
 | [975 W 3rd Street San Pedro, CA 90731](https://portal.onehome.com/en-US/property/aotf~1079432353~CRMLSM?token=eyJPU04iOiJDUk1MU00iLCJ0eXBlIjoiMCIsInNldGlkIjoiODg5NzE4NTAyIiwic2V0a2V5IjoiODA0IiwiZW1haWwiOiJmcmVkcGFzcXVhcmVsbGFAZ21haWwuY29tIiwicmVzb3VyY2VpZCI6MCwiYWdlbnRpZCI6MjE3NzU1MSwibGlzdGluZ2lkIjoiNDIwOTE0ODQ0IiwiVmlld01vZGUiOiIxIn0%3D&searchId=c6f729e6-8039-34da-9f98-afa5c0aadcdc)       |  4  |  2   |  1,306  | \$799,000  |
 | [1123 W 2nd Street, San Pedro, CA 90731](https://portal.onehome.com/en-US/listing?token=eyJPU04iOiJDUk1MU00iLCJ0eXBlIjoiMCIsInNldGlkIjoiODg5NzE4NTAyIiwic2V0a2V5IjoiODA0IiwiZW1haWwiOiJmcmVkcGFzcXVhcmVsbGFAZ21haWwuY29tIiwicmVzb3VyY2VpZCI6MCwiYWdlbnRpZCI6MjE3NzU1MSwibGlzdGluZ2lkIjoiNDMxODk1Njk2IiwiVmlld01vZGUiOiIxIn0%3D&SMS=0)                                                                     |  4  |  1   |  1,611  | \$812,000  |
 | [1284 W 9th Street, San Pedro, CA 90731](https://portal.onehome.com/en-US/property/aotf~1103290654~CRMLSM?token=eyJPU04iOiJDUk1MU00iLCJ0eXBlIjoiMCIsInNldGlkIjoiODg5NzE4NTAyIiwic2V0a2V5IjoiODA0IiwiZW1haWwiOiJmcmVkcGFzcXVhcmVsbGFAZ21haWwuY29tIiwicmVzb3VyY2VpZCI6MCwiYWdlbnRpZCI6MjE3NzU1MSwibGlzdGluZ2lkIjoiNDMwOTA1MDkwIiwiVmlld01vZGUiOiIxIn0%3D&searchId=c6f729e6-8039-34da-9f98-afa5c0aadcdc)     |  3  |  2   |  1,208  | \$829,000  |
@@ -46,14 +46,14 @@ While sale prices varied, the *comparables* ranged from **\$799,000 on the lower
 ### Moderate Renovations
 
 | Address                                                                                                                                                                                                                                                                                                                                                                                                      | Bed | Bath | Sq Feet | Sale Price |
-|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:---:|:----:|:-------:|:----------:|
+|------------------------------------|:----------:|:--------:|:-------:|:-------------:|
 | [919 W Third street San Pedro, CA 90731](https://portal.onehome.com/en-US/property/aotf~1081855731~CRMLSM?token=eyJPU04iOiJDUk1MU00iLCJ0eXBlIjoiMCIsInNldGlkIjoiODg5NzE4NTAyIiwic2V0a2V5IjoiODA0IiwiZW1haWwiOiJmcmVkcGFzcXVhcmVsbGFAZ21haWwuY29tIiwicmVzb3VyY2VpZCI6MCwiYWdlbnRpZCI6MjE3NzU1MSwibGlzdGluZ2lkIjoiNDIxNzA2MTQ0IiwiVmlld01vZGUiOiIxIn0%3D&searchId=c6f729e6-8039-34da-9f98-afa5c0aadcdc)        |  4  |  2   |  1,244  | \$839,000  |
 | [1368 W Summerland Avenue, San Pedro, CA 90732](https://portal.onehome.com/en-US/property/aotf~1108301693~CRMLSM?token=eyJPU04iOiJDUk1MU00iLCJ0eXBlIjoiMCIsInNldGlkIjoiODg5NzE4NTAyIiwic2V0a2V5IjoiODA0IiwiZW1haWwiOiJmcmVkcGFzcXVhcmVsbGFAZ21haWwuY29tIiwicmVzb3VyY2VpZCI6MCwiYWdlbnRpZCI6MjE3NzU1MSwibGlzdGluZ2lkIjoiNDMzNTA3OTAyIiwiVmlld01vZGUiOiIxIn0%3D&searchId=c6f729e6-8039-34da-9f98-afa5c0aadcdc) |  3  |  2   |  1,412  | \$899,000  |
 
 ### Full Remodel
 
 | Address                                                                                                                                                                                                                                                                                                                                                                                                    | Bed | Bath | Sq Feet | Sale Price |
-|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:---:|:----:|:-------:|:----------:|
+|------------------------------------|:----------:|:--------:|:-------:|:-------------:|
 | [1173 W 2nd Street, San Pedro, CA 90731-2306](https://portal.onehome.com/en-US/property/aotf~1107286323~CRMLSM?token=eyJPU04iOiJDUk1MU00iLCJ0eXBlIjoiMCIsInNldGlkIjoiODg5NzE4NTAyIiwic2V0a2V5IjoiODA0IiwiZW1haWwiOiJmcmVkcGFzcXVhcmVsbGFAZ21haWwuY29tIiwicmVzb3VyY2VpZCI6MCwiYWdlbnRpZCI6MjE3NzU1MSwibGlzdGluZ2lkIjoiNDMyMjEyOTc2IiwiVmlld01vZGUiOiIxIn0%3D&searchId=c6f729e6-8039-34da-9f98-afa5c0aadcdc) |  4  |  2   |  1,478  | \$922,000  |
 | [1446 W Sepulveda Street San Pedro, CA 90732](https://portal.onehome.com/en-US/property/aotf~1089655791~CRMLSM?token=eyJPU04iOiJDUk1MU00iLCJ0eXBlIjoiMCIsInNldGlkIjoiODg5NzE4NTAyIiwic2V0a2V5IjoiODA0IiwiZW1haWwiOiJmcmVkcGFzcXVhcmVsbGFAZ21haWwuY29tIiwicmVzb3VyY2VpZCI6MCwiYWdlbnRpZCI6MjE3NzU1MSwibGlzdGluZ2lkIjoiNDI0NTA4MzQwIiwiVmlld01vZGUiOiIxIn0%3D&searchId=c6f729e6-8039-34da-9f98-afa5c0aadcdc) |  3  |  3   |  2,124  | \$970,000  |
 | [633 S Meyler Street San Pedro, CA 90731](https://portal.onehome.com/en-US/property/aotf~1078456504~CRMLSM?token=eyJPU04iOiJDUk1MU00iLCJ0eXBlIjoiMCIsInNldGlkIjoiODg5NzE4NTAyIiwic2V0a2V5IjoiODA0IiwiZW1haWwiOiJmcmVkcGFzcXVhcmVsbGFAZ21haWwuY29tIiwicmVzb3VyY2VpZCI6MCwiYWdlbnRpZCI6MjE3NzU1MSwibGlzdGluZ2lkIjoiNDE5NDU4NjMwIiwiVmlld01vZGUiOiIxIn0%3D&searchId=c6f729e6-8039-34da-9f98-afa5c0aadcdc)     |  3  |  3   |  1,913  | \$998,888  |
@@ -64,18 +64,11 @@ We created a number of data tables to model market sales. First, renovation leve
 
 ```{r}
 # load required packages 
-library(googlesheets4)
 library(tidyverse)
 library(knitr)
 library(kableExtra)
 
-
-# import google sheet
-# gs4_auth(cache = TRUE) 
-
-sheet_id <- "1bPiUqZu7QygmThIu2NC8kFB_SL7ylGoVL6HyvQ70q6w"
-
-data <- read_sheet(sheet_id, sheet = "data")
+data <- read.csv("data.csv")
 
 ```
 

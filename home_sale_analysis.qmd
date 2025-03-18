@@ -1,0 +1,590 @@
+---
+title: "Home Sale Profit Model"
+author: "Fred J. Pasquarella"
+format:
+  html:
+    theme: cosmo  # Change the theme as needed
+    toc: true  # Enables a sidebar Table of Contents
+    toc-location: left  # Sidebar on the left
+    number-sections: true  # Numbered headings
+editor: visual
+execute: 
+  echo: false
+  warning: false
+  message: false
+---
+
+> "The first step to reducing uncertainty is to measure it." --- Douglas W. Hubbard
+
+## Introduction
+
+This report presents a data-driven analysis to support an informed decision about selling a home. The key consideration was an investor's offer to purchase the property "as is" at a fixed price, with only a 2% commission affecting the net proceeds. However, the seller was uncertain how this offer compared to potential market sales, where pricing and costs could vary significantly.
+
+To address this, the report models potential market sale prices based on comparable homes and incorporates probabilistic scenarios for necessary renovations. A simulation was then conducted to estimate the expected net proceeds from listing the home on the market. Finally, the probability distribution of these net proceeds was compared against the investor's offer, providing insight into the likelihood of achieving a better financial outcome through a traditional sale.
+
+## The Property
+
+The property under consideration is located at **340 Woodland Drive, San Pedro, CA 90732**. It is a **single-family home** built in the **1940s**, featuring **three bedrooms and two bathrooms**. The home sits on a **5,600 sq. ft. lot**, with a total living space of **1,500 sq. ft.**
+
+While the property retains its original structure, it requires significant repairs and modernization. Notable concerns include **outdated electrical and plumbing systems, foundation issues, and a necessary remodel of the bathrooms**. These factors contribute to uncertainty regarding market pricing and potential costs associated with selling the home through a traditional listing.
+
+## Comparable Homes
+
+Nine comparable homes were identified in the surrounding area. These properties have been categorized based on the level of renovation required to bring the subject property to a similar market condition.
+
+While sale prices varied, the *comparables* ranged from **\$799,000 on the lower end to \$988,000 at the higher end**. The following tables provide a breakdown of these properties by renovation level, offering a clearer picture of potential market value under different renovation scenarios.
+
+### As Is to Minimal Repairs
+
+| Address                                                                                                                                                                                                                                                                                                                                                                                                   | Bed | Bath | Sq Feet | Sale Price |
+|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:---:|:----:|:-------:|:----------:|
+| [975 W 3rd Street San Pedro, CA 90731](https://portal.onehome.com/en-US/property/aotf~1079432353~CRMLSM?token=eyJPU04iOiJDUk1MU00iLCJ0eXBlIjoiMCIsInNldGlkIjoiODg5NzE4NTAyIiwic2V0a2V5IjoiODA0IiwiZW1haWwiOiJmcmVkcGFzcXVhcmVsbGFAZ21haWwuY29tIiwicmVzb3VyY2VpZCI6MCwiYWdlbnRpZCI6MjE3NzU1MSwibGlzdGluZ2lkIjoiNDIwOTE0ODQ0IiwiVmlld01vZGUiOiIxIn0%3D&searchId=c6f729e6-8039-34da-9f98-afa5c0aadcdc)       |  4  |  2   |  1,306  | \$799,000  |
+| [1123 W 2nd Street, San Pedro, CA 90731](https://portal.onehome.com/en-US/listing?token=eyJPU04iOiJDUk1MU00iLCJ0eXBlIjoiMCIsInNldGlkIjoiODg5NzE4NTAyIiwic2V0a2V5IjoiODA0IiwiZW1haWwiOiJmcmVkcGFzcXVhcmVsbGFAZ21haWwuY29tIiwicmVzb3VyY2VpZCI6MCwiYWdlbnRpZCI6MjE3NzU1MSwibGlzdGluZ2lkIjoiNDMxODk1Njk2IiwiVmlld01vZGUiOiIxIn0%3D&SMS=0)                                                                     |  4  |  1   |  1,611  | \$812,000  |
+| [1284 W 9th Street, San Pedro, CA 90731](https://portal.onehome.com/en-US/property/aotf~1103290654~CRMLSM?token=eyJPU04iOiJDUk1MU00iLCJ0eXBlIjoiMCIsInNldGlkIjoiODg5NzE4NTAyIiwic2V0a2V5IjoiODA0IiwiZW1haWwiOiJmcmVkcGFzcXVhcmVsbGFAZ21haWwuY29tIiwicmVzb3VyY2VpZCI6MCwiYWdlbnRpZCI6MjE3NzU1MSwibGlzdGluZ2lkIjoiNDMwOTA1MDkwIiwiVmlld01vZGUiOiIxIn0%3D&searchId=c6f729e6-8039-34da-9f98-afa5c0aadcdc)     |  3  |  2   |  1,208  | \$829,000  |
+| [619 S Cabrillo Avenue, San Pedro, CA 90731](https://portal.onehome.com/en-US/property/aotf~1081855731~CRMLSM?token=eyJPU04iOiJDUk1MU00iLCJ0eXBlIjoiMCIsInNldGlkIjoiODg5NzE4NTAyIiwic2V0a2V5IjoiODA0IiwiZW1haWwiOiJmcmVkcGFzcXVhcmVsbGFAZ21haWwuY29tIiwicmVzb3VyY2VpZCI6MCwiYWdlbnRpZCI6MjE3NzU1MSwibGlzdGluZ2lkIjoiNDIxNzA2MTQ0IiwiVmlld01vZGUiOiIxIn0%3D&searchId=c6f729e6-8039-34da-9f98-afa5c0aadcdc) |  3  |  2   |  1,620  | \$840,000  |
+
+### Moderate Renovations
+
+| Address                                                                                                                                                                                                                                                                                                                                                                                                      | Bed | Bath | Sq Feet | Sale Price |
+|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:---:|:----:|:-------:|:----------:|
+| [919 W Third street San Pedro, CA 90731](https://portal.onehome.com/en-US/property/aotf~1081855731~CRMLSM?token=eyJPU04iOiJDUk1MU00iLCJ0eXBlIjoiMCIsInNldGlkIjoiODg5NzE4NTAyIiwic2V0a2V5IjoiODA0IiwiZW1haWwiOiJmcmVkcGFzcXVhcmVsbGFAZ21haWwuY29tIiwicmVzb3VyY2VpZCI6MCwiYWdlbnRpZCI6MjE3NzU1MSwibGlzdGluZ2lkIjoiNDIxNzA2MTQ0IiwiVmlld01vZGUiOiIxIn0%3D&searchId=c6f729e6-8039-34da-9f98-afa5c0aadcdc)        |  4  |  2   |  1,244  | \$839,000  |
+| [1368 W Summerland Avenue, San Pedro, CA 90732](https://portal.onehome.com/en-US/property/aotf~1108301693~CRMLSM?token=eyJPU04iOiJDUk1MU00iLCJ0eXBlIjoiMCIsInNldGlkIjoiODg5NzE4NTAyIiwic2V0a2V5IjoiODA0IiwiZW1haWwiOiJmcmVkcGFzcXVhcmVsbGFAZ21haWwuY29tIiwicmVzb3VyY2VpZCI6MCwiYWdlbnRpZCI6MjE3NzU1MSwibGlzdGluZ2lkIjoiNDMzNTA3OTAyIiwiVmlld01vZGUiOiIxIn0%3D&searchId=c6f729e6-8039-34da-9f98-afa5c0aadcdc) |  3  |  2   |  1,412  | \$899,000  |
+
+### Full Remodel
+
+| Address                                                                                                                                                                                                                                                                                                                                                                                                    | Bed | Bath | Sq Feet | Sale Price |
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:---:|:----:|:-------:|:----------:|
+| [1173 W 2nd Street, San Pedro, CA 90731-2306](https://portal.onehome.com/en-US/property/aotf~1107286323~CRMLSM?token=eyJPU04iOiJDUk1MU00iLCJ0eXBlIjoiMCIsInNldGlkIjoiODg5NzE4NTAyIiwic2V0a2V5IjoiODA0IiwiZW1haWwiOiJmcmVkcGFzcXVhcmVsbGFAZ21haWwuY29tIiwicmVzb3VyY2VpZCI6MCwiYWdlbnRpZCI6MjE3NzU1MSwibGlzdGluZ2lkIjoiNDMyMjEyOTc2IiwiVmlld01vZGUiOiIxIn0%3D&searchId=c6f729e6-8039-34da-9f98-afa5c0aadcdc) |  4  |  2   |  1,478  | \$922,000  |
+| [1446 W Sepulveda Street San Pedro, CA 90732](https://portal.onehome.com/en-US/property/aotf~1089655791~CRMLSM?token=eyJPU04iOiJDUk1MU00iLCJ0eXBlIjoiMCIsInNldGlkIjoiODg5NzE4NTAyIiwic2V0a2V5IjoiODA0IiwiZW1haWwiOiJmcmVkcGFzcXVhcmVsbGFAZ21haWwuY29tIiwicmVzb3VyY2VpZCI6MCwiYWdlbnRpZCI6MjE3NzU1MSwibGlzdGluZ2lkIjoiNDI0NTA4MzQwIiwiVmlld01vZGUiOiIxIn0%3D&searchId=c6f729e6-8039-34da-9f98-afa5c0aadcdc) |  3  |  3   |  2,124  | \$970,000  |
+| [633 S Meyler Street San Pedro, CA 90731](https://portal.onehome.com/en-US/property/aotf~1078456504~CRMLSM?token=eyJPU04iOiJDUk1MU00iLCJ0eXBlIjoiMCIsInNldGlkIjoiODg5NzE4NTAyIiwic2V0a2V5IjoiODA0IiwiZW1haWwiOiJmcmVkcGFzcXVhcmVsbGFAZ21haWwuY29tIiwicmVzb3VyY2VpZCI6MCwiYWdlbnRpZCI6MjE3NzU1MSwibGlzdGluZ2lkIjoiNDE5NDU4NjMwIiwiVmlld01vZGUiOiIxIn0%3D&searchId=c6f729e6-8039-34da-9f98-afa5c0aadcdc)     |  3  |  3   |  1,913  | \$998,888  |
+
+## Data Preparation
+
+We created a number of data tables to model market sales. First, renovation level estimates were created. Then, market costs and net proceeds were listed. Lastly, sales prices and probabilities for sales at different renovation levels were made. Please note that sale probabilities and renovation costs were informed estimations and should be reviewed and refined if new information is discovered.
+
+```{r}
+# load required packages 
+library(googlesheets4)
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+
+
+# import google sheet
+# gs4_auth(cache = TRUE) 
+
+sheet_id <- "1bPiUqZu7QygmThIu2NC8kFB_SL7ylGoVL6HyvQ70q6w"
+
+data <- read_sheet(sheet_id, sheet = "data")
+
+```
+
+### Renovation Levels Estimates
+
+The estimated renovation costs were derived from owner knowledge, a 2021 inspection report, and an investor-provided repair cost sheet. A full remodel of the home would require work across multiple areas, including:
+
+-   Foundation Repairs & Structural Reinforcement
+-   Plumbing Repairs (Leaks, Corrosion, TPRV Drain Tube)
+-   Electrical Upgrades (Zinsco Panel Replacement)
+-   Bathroom Remodel (Mold Remediation, Flooring, Fixtures)
+-   Second Bathroom Remodel
+-   Kitchen Updates (Cabinets, Counters, Appliances)
+-   Flooring Replacement (Throughout House)
+-   Flooring Repair (Carpet Removal, Sanding, Refinishing)
+-   Interior & Exterior Painting
+-   Roof Repairs & Fascia Replacement
+-   Landscaping & Curb Appeal Improvements
+-   Miscellaneous Repairs & Contingency
+-   Property Clear-Out
+
+The investor estimated that a full remodel would cost \$139,000, with foundation repairs being the most expensive item at \$27,000. While the accuracy of the investor's cost estimates is uncertain---given their ability to complete work at lower rates---it still serves as a reasonable baseline for assessing repair costs.
+
+To evaluate potential market sale outcomes, four distinct renovation scenarios were developed:
+
+1.  Bare Minimum: Covers only essential work to make the home presentable, including property clear-out, landscaping for curb appeal, painting, and minimal floor work.
+2.  Minimal Repairs: Includes all bare minimum improvements, along with updates to the master bathroom and some electrical work.
+3.  Moderate Renovations: Builds on the minimal repairs by also addressing the second bathroom and kitchen updates.
+4.  Full Remodel: Encompasses all necessary work to bring the home to full market condition, covering every aspect listed above.
+
+The following section provides cost estimates for each of these scenarios to better understand potential net proceeds under different renovation levels.
+
+| Renovation Level           |   Cost    |
+|----------------------------|:---------:|
+| Bare Minimum (bare)        | \$15,000  |
+| Minimal Repairs (min)      | \$34,000  |
+| Moderate Renovations (mod) | \$78,000  |
+| Full Remodel (full)        | \$174,000 |
+
+### Market Costs and Net Proceeds Analysis
+
+The primary objective of this analysis is to estimate net proceeds from a market sale and compare them to the net proceeds from an investor offer. Below are the key variables and the formulas used to calculate net proceeds for each scenario.
+
+#### Market Sale Net Proceeds Calculation
+
+The net proceeds from a market sale are determined by the **sales price (SP)**, minus associated costs, including escrow fees, agent commissions, outstanding mortgage balance, and expected repair costs. The breakdown is as follows:
+
+-   SP = Sale Price
+-   Variable Rate from Escrow (Escrow) = SP \* 1.1%
+-   Fixed Fees from Sale (Fees) = \$2,412
+-   Commission (Commission) = SP \* 5%
+-   Current Mortgage (Loan) = \$314,000
+-   Expected Repair Costs (ExpRepair): weighted average repair cost based on different renovation scenarios
+
+$$
+ExpRepair = (Bare * ProbBare) + (Min * ProbMin) + (Mod * ProbMod) + (Full * ProbFull)
+$$
+
+The final formula for **net proceeds from a market sale** is:
+
+$$
+NETmarket = SP - (SP * 0.011 - 0.05) - 2,412 - 314,000 - ExpRepair
+$$
+
+#### Investor Offer Net Proceeds Calculation
+
+The investor offer eliminates repair costs since the home is sold **"as-is"**. Additionally, the investor **covers all other costs** except for a **2% commission** on the sale price (OP). The net proceeds formula for the investor offer is:
+
+$$
+NEToffer = OP - (OP * 0.02) - 314,000
+$$
+
+### Sales Price Ranges and Probability Assignments
+
+Market sales prices were set within a range of \$750,000 to \$1,050,000, increasing in \$5,000 increments. This range was determined based on comparable home sales, the investor's offer, and the expected post-renovation flip price of the property.
+
+To more accurately reflect market dynamics, a two-stage probability model was used:
+
+1.  Probability of selecting a renovation level -- Each repair level had a probability representing the likelihood of a seller choosing that level of renovation.
+
+2.  Conditional probability of sales price -- Given a renovation level, a probability distribution was assigned to potential sales prices, reflecting the likelihood of achieving a specific price based on the level of repairs completed.
+
+This approach incorporates both market uncertainty and the impact of renovations on price outcomes, providing a data-driven comparison of financial outcomes between a market sale and accepting the investor's offer. The following section presents a sample of the probability distribution used in the analysis.
+
+Below is the table for the probability of selecting a renovation level.
+
+```{r}
+
+# Define probability of each repair level
+repair_level_probs <- tibble(
+  repair_level = c("Bare Minimum", "Minimal", "Moderate", "Full"),
+  probability = c(0.25, 0.35, 0.30, 0.10)
+)
+
+colnames(repair_level_probs) <- c("Renovation Level", "Probability")
+
+kable(repair_level_probs, caption = "Probability of selecting a renovation level")
+
+```
+
+Here is a sample of the conditional probabilities of sales price at a given renovation level.
+
+```{r}
+# create an example table of conditional probabilities and exp repair costs
+example_probs <- data %>%
+  select(sale_price, sale_show_prob, sale_min_prob, sale_mod_prob, sale_full_prob, exp_repair_cost) %>%
+  filter(sale_price %in% c(750000, 800000, 850000, 900000, 950000, 1000000))
+
+colnames(example_probs) <- c("Sales Price", "Bare Min Prob", "Minimal Prob", 
+                             "Moderate Prob", "Full Prob", "Exp Repair Cost")
+
+kable(example_probs, caption = "Conditional probability of sales price")
+
+```
+
+## Estimating Sale Price and Net Proceeds
+
+### Estimating Sale Price and Net Proceeds
+
+#### Monte Carlo Simulation
+
+To capture the inherent uncertainty in the home sale process, a Monte Carlo simulation was conducted using 10,000 iterations. This simulation provides a probabilistic estimate of the likely sales price and corresponding net proceeds under different renovation scenarios.
+
+The simulation process involved the following steps:
+
+1.  Randomly Selecting a Repair Level: Each iteration first selected a renovation level based on its probability distribution, reflecting the likelihood of different repair strategies.
+
+2.  Randomly Selecting a Sales Price: A sales price was then drawn from the probability distribution corresponding to the chosen renovation level. This approach ensures that home values reflect real-world variations in pricing based on property condition.
+
+3.  Calculating Net Proceeds for Each Iteration: Using the selected sales price and renovation level, the market sale net proceeds formula was applied, accounting for: Escrow fees; Agent commissions; Remaining mortgage balance; Renovation costs. The same calculation was performed for the investor offer, where no renovation costs were incurred and a fixed 2% commission was deducted.
+
+4.  Building the Probability Distribution of Outcomes: After running 10,000 simulations, the results were aggregated into a probability distribution of net proceeds from a market sale. This distribution was then compared against the net proceeds from the investor offer, allowing us to quantify the likelihood of achieving a better financial outcome by selling on the market.
+
+### Why Monte Carlo?
+
+Monte Carlo simulation is particularly useful in real estate decision-making because it allows for a more comprehensive assessment of risk and uncertainty. Instead of relying on a single-point estimate, this method provides a range of possible outcomes, helping the seller understand:
+
+-   The probability of different sale price scenarios
+-   The expected variation in net proceeds
+-   The risk-reward trade-off between selling on the market and taking the investor offer
+
+By simulating thousands of possible sale outcomes, this approach provides a data-driven framework for making an informed decision.
+
+The next section presents the results of the simulation, including expected net proceeds, probability distributions, and a comparison to the investor's offer.
+
+```{r}
+
+set.seed(123)  # set seed for reproducibility
+
+
+n_sim <- 10000  # Number of simulations
+
+#  Randomly Select a Repair Level 
+## Each iteration in the simulation first chooses a repair level based on the probabilities in the repair level probability table.
+
+# Define probability of each repair level
+repair_level_probs <- tibble(
+  repair_level = c("Bare Minimum", "Minimal", "Moderate", "Full"),
+  probability = c(0.25, 0.35, 0.30, 0.10)
+)
+
+# Step 1: Sample a repair level for each iteration
+simulation_results <- tibble(
+  iteration = 1:n_sim,
+  repair_level = sample(
+    repair_level_probs$repair_level, n_sim, 
+    replace = TRUE, prob = repair_level_probs$probability
+  )
+)
+
+# Select a Sales Price Based on the Chosen Repair Level
+## Randomly choose a sales price based on the conditional probabilities.
+
+# Define sales price probabilities for each repair level
+sales_price_probs <- data %>%
+  select(sale_price, sale_show_prob, sale_min_prob, sale_mod_prob, sale_full_prob) %>%
+  rename(bare_min_prob = sale_show_prob,
+         minimal_prob = sale_min_prob,
+         moderate_prob = sale_mod_prob,
+         full_prob =  sale_full_prob)
+
+# Step 2: Sample sale price based on the chosen repair level
+simulation_results <- simulation_results %>%
+  rowwise() %>%
+  mutate(
+    sale_price = sample(
+      sales_price_probs$sale_price, 1,
+      prob = case_when(
+        repair_level == "Bare Minimum" ~ sales_price_probs$bare_min_prob,
+        repair_level == "Minimal" ~ sales_price_probs$minimal_prob,
+        repair_level == "Moderate" ~ sales_price_probs$moderate_prob,
+        repair_level == "Full" ~ sales_price_probs$full_prob
+      )
+    )
+  ) %>%
+  ungroup()
+
+# Step 3: Incorporate Repair Costs & Net Proceeds
+
+# Define estimated repair costs for each level
+repair_costs <- tibble(
+  repair_level = c("Bare Minimum", "Minimal", "Moderate", "Full"),
+  cost = c(15000, 38000, 78000, 174000)  
+)
+
+# Define fixed costs
+fixed_fees <- 2412
+commission_rate <- 0.05
+escrow_rate <- 0.011
+mortgage_remaining <- 314000
+
+# Merge repair costs into simulation results
+simulation_results <- simulation_results %>%
+  left_join(repair_costs, by = "repair_level") %>%
+  mutate(
+    net_proceeds = sale_price - (sale_price * escrow_rate) - 
+                    (sale_price * commission_rate) - 
+                    fixed_fees - mortgage_remaining - cost
+  )
+
+
+# Summary statistics for Net Proceeds
+summary_proceeds <- simulation_results %>%
+  summarise(
+    Mean_Net_Proceeds = round(mean(net_proceeds, na.rm = TRUE),0),
+    Median_Net_Proceeds = median(net_proceeds, na.rm = TRUE),
+    SD_Net_Proceeds = round(sd(net_proceeds, na.rm = TRUE),0),
+    Min_Net_Proceeds = min(net_proceeds, na.rm = TRUE),
+    Max_Net_Proceeds = max(net_proceeds, na.rm = TRUE)
+  )
+
+colnames(summary_proceeds) <- c("Mean Net", "Median Net", "SD Net", "Min Net", "Max Net")
+
+kable(summary_proceeds, caption = "Simulation Results for Net Proceeds")
+
+# plotting distribution of sale prices from simulation
+ggplot(simulation_results, aes(x = sale_price)) +
+  geom_histogram(bins = 50, fill = "#BFD3C1", alpha = 0.6, color = "black") +
+  scale_x_continuous(labels = scales::comma) +
+  theme_minimal() +
+  labs(
+    title = "Distribution of Sale Price from Market Sale",
+    x = "Sale Price ($)",
+    y = "Frequency"
+  ) +
+  geom_vline(aes(xintercept = mean(sale_price)), color = "#D4A373", linetype = "dashed") +
+  annotate("text", x = mean(simulation_results$sale_price), y = 500, 
+           label = paste("Mean:", round(mean(simulation_results$sale_price), 0)), 
+           color = "#D4A373", hjust = -0.2) 
+
+# ploting distribution of net proceeds from simulation
+ggplot(simulation_results, aes(x = net_proceeds)) +
+  geom_histogram(bins = 50, fill = "#A2C3E4", alpha = 0.6, color = "black") +
+  scale_x_continuous(labels = scales::comma) +
+  theme_minimal() +
+  labs(
+    title = "Distribution of Net Proceeds from Market Sale",
+    x = "Net Proceeds ($)",
+    y = "Frequency"
+  ) +
+  geom_vline(aes(xintercept = mean(net_proceeds)), color = "#D4A373", linetype = "dashed") +
+  annotate("text", x = mean(simulation_results$net_proceeds), y = 600, 
+           label = paste("Mean:", round(mean(simulation_results$net_proceeds), 0)), 
+           color = "#D4A373", hjust = -0.2)
+
+```
+
+### Return on Investment
+
+To assess the financial viability of selling the property on the open market, a Return on Investment (ROI) analysis was conducted. This analysis compares the net financial returns from a market sale to the costs incurred through necessary repairs and transaction fees. Additionally, it evaluates how the potential ROI from a market sale compares to the ROI from accepting the investor offer, providing a clear picture of the financial trade-offs between the two options.
+
+By leveraging Monte Carlo simulation results, we computed two key ROI metrics:
+
+1.  ROI from Market Sale -- This measures the return relative to the renovation costs:
+
+$$
+ROI = (Net Proceeds - Repair Costs)/Repair Costs
+$$
+
+This reflects how much value is gained (or lost) for every **dollar spent on repairs**.
+
+1.  ROI Compared to the Investor Offer -- This measures the additional return from a market sale relative to the investor's net offer:
+
+$$
+ROIinvestor = (Net Proceeds - Net Investor Offer)/Net Investor Offer
+$$
+
+A positive ROI indicates that selling on the market is expected to yield a higher return than accepting the investor's offer.
+
+By analyzing these ROI distributions, we gain insights into:
+
+-   The likelihood of a profitable return from selling on the market.
+
+-   The probability that market sale outperforms the investor's offer.
+
+-   The potential risks and variability associated with each decision.
+
+The following sections present summary statistics and visualizations to illustrate the distribution of expected ROI under different market conditions.
+
+```{r}
+# Step 4: Compare Against Investor Offer
+
+# Define investor offer price
+investor_offer_price <- 750000
+net_investor_proceeds <- investor_offer_price * (1 - 0.02) - mortgage_remaining
+
+# Compute ROI
+simulation_results <- simulation_results %>%
+  mutate(
+    ROI = (net_proceeds - cost) / cost,  # Market sale ROI
+    ROI_Investor = (net_proceeds - net_investor_proceeds) / net_investor_proceeds  # Investor ROI
+  )
+
+
+
+# Summary statistics for ROI from Market Sale
+summary_roi <- simulation_results %>%
+  summarise(
+    Mean_ROI = mean(ROI, na.rm = TRUE),
+    Median_ROI = median(ROI, na.rm = TRUE),
+    SD_ROI = sd(ROI, na.rm = TRUE),
+    Min_ROI = min(ROI, na.rm = TRUE),
+    Max_ROI = max(ROI, na.rm = TRUE)
+  )
+
+colnames(summary_roi) <- c("Mean ROI", "Median ROI", "SD ROI", "Min ROI", "Max ROI")
+
+# Summary statistics for ROI compared to Investor Offer
+summary_roi_investor <- simulation_results %>%
+  summarise(
+    Mean_ROI_Investor = mean(ROI_Investor, na.rm = TRUE),
+    Median_ROI_Investor = median(ROI_Investor, na.rm = TRUE),
+    SD_ROI_Investor = sd(ROI_Investor, na.rm = TRUE),
+    Min_ROI_Investor = min(ROI_Investor, na.rm = TRUE),
+    Max_ROI_Investor = max(ROI_Investor, na.rm = TRUE)
+  )
+
+colnames(summary_roi_investor) <- c("Mean ROI", "Median ROI", "SD ROI", "Min ROI", "Max ROI")
+
+kable(summary_roi, caption = "Summary Statisc for ROI from Market Sale")
+
+
+# ploting ROI for market sale
+ggplot(simulation_results, aes(x = ROI)) +
+  geom_histogram(bins = 50, fill = "#ADC178", alpha = 0.6, color = "black") +
+  theme_minimal() +
+  labs(
+    title = "Distribution of ROI from Market Sale",
+    x = "Return on Investment (ROI)",
+    y = "Frequency"
+  ) +
+  geom_vline(aes(xintercept = mean(ROI)), color = "#D4A373", linetype = "dashed") +
+  annotate("text", x = mean(simulation_results$ROI), y = 950, 
+           label = paste("Mean ROI:", round(mean(simulation_results$ROI), 2)), 
+           color = "#D4A373", hjust = -0.2)
+
+kable(summary_roi_investor, caption = "Summary Statisc for ROI Compared to Investor Offer")
+
+ggplot(simulation_results, aes(x = ROI_Investor)) +
+  geom_histogram(bins = 50, fill = "#F8CFA9", alpha = 0.6, color = "black") +
+  theme_minimal() +
+  labs(
+    title = "Comparison of Market ROI vs. Investor Offer",
+    x = "ROI Relative to Investor Offer",
+    y = "Frequency"
+  ) +
+  geom_vline(aes(xintercept = 0), color = "red3", linetype = "dashed") +
+  annotate("text", x = 0, y = 50, label = "Break-even Point", color = "red3", fontface = "bold", hjust = -0.1)
+```
+
+## Probability of Beating the Investor Offer
+
+A key component of this analysis is determining the likelihood that selling on the market will result in higher net proceeds than the investor's offer. By leveraging the Monte Carlo simulation results, we calculated the probability that a market sale would yield greater net proceeds than the investor's offer after accounting for transaction costs and renovations.
+
+This probability is computed as:
+
+$$
+P(Net Proceeds) > NetInvestorOffer
+$$
+
+#### Interpreting the Probability Value
+
+-   Above 50% → The market sale is statistically more likely to result in a better financial outcome than the investor offer.
+
+-   Below 50% → The investor offer is the more favorable option in most scenarios.
+
+-   Close to 50% → The decision is highly uncertain, and additional factors (e.g., risk tolerance, time constraints) should be considered.
+
+By analyzing this probability alongside the distribution of net proceeds and ROI, we can quantify the risk-reward trade-off of going to market versus accepting a guaranteed investor sale. The following section presents the results of this comparison, including probability distributions and insights into the expected financial advantages or disadvantages of each option.
+
+```{r}
+# Probability of beating the investor offer
+prob_beats_investor <- mean(simulation_results$net_proceeds > net_investor_proceeds)
+
+cat("\nProbability of Netting More Than $", format(net_investor_proceeds, big.mark=","), ": ", 
+    round(prob_beats_investor * 100, 2), "%\n")
+
+# plotting culmulative probablity of beating investor offer
+ggplot(simulation_results, aes(x = net_proceeds)) +
+  stat_ecdf(geom = "step", color = "#A8D5BA") +
+  scale_x_continuous(labels = scales::comma) +
+  theme_minimal() +
+  labs(
+    title = "Cumulative Probability of Beating Investor Offer",
+    x = "Net Proceeds ($)",
+    y = "Cumulative Probability"
+  ) +
+  geom_vline(aes(xintercept = net_investor_proceeds), color = "#D4A373", linetype = "dashed") +
+  annotate("text", x = net_investor_proceeds, y = 0.1, 
+           label = "Investor Offer Proceeds", color = "#D4A373", hjust = -0.1)
+
+```
+
+To contextualize this further, we tested scenarios where a traditational sale would beat the investor offer. We first looked at the probability of making less than \$10,000 compared to the investor offer. Next, we looked at the probability of making more than \$10,000 over the investor offer.
+
+```{r}
+# Probability of beating the investor offer
+prob_beats_investor_less <- mean(simulation_results$net_proceeds < net_investor_proceeds -10000)
+
+cat("\nProbability of Less Than $", format(net_investor_proceeds-10000, big.mark=","), ": ", 
+    round(prob_beats_investor_less * 100, 2), "%\n")
+
+# Probability of beating the investor offer
+prob_beats_investor_plus <- mean((simulation_results$net_proceeds)  > net_investor_proceeds + 10000)
+
+cat("\nProbability of Netting More Than $", format(net_investor_proceeds + 10000, big.mark=","), ": ", 
+    round(prob_beats_investor_plus * 100, 2), "%\n")
+
+```
+
+## Results by Renovation Level
+
+While the overall probability of beating the investor offer provides a broad financial outlook, breaking down the results by renovation level offers a more nuanced perspective on the potential return of different repair strategies. Instead of treating all market sales equally, this analysis examines how varying levels of renovation impact net proceeds, return on investment (ROI), and the likelihood of outperforming the investor offer.
+
+By segmenting the results based on renovation level, we can answer key questions such as:
+
+-   Which level of renovation provides the highest expected return?
+
+-   How does the risk of financial loss change with different repair strategies?
+
+-   At what point does additional investment in repairs yield diminishing returns?
+
+To explore these factors, we compare net proceeds distributions, ROI calculations, and the probability of beating the investor offer across all four renovation levels. This provides a data-driven framework for determining the optimal selling strategy---whether that means making minimal repairs or investing in a full remodel.
+
+### Summary Statistics by Renovation Level
+
+```{r}
+summary_repair <- simulation_results %>%
+  group_by(repair_level) %>%
+  summarise(
+    Mean_Net_Proceeds = round(mean(net_proceeds, na.rm = TRUE),0),
+    Median_Net_Proceeds = median(net_proceeds, na.rm = TRUE),
+    SD_Net_Proceeds = round(sd(net_proceeds, na.rm = TRUE),0),
+    Min_Net_Proceeds = min(net_proceeds, na.rm = TRUE),
+    Max_Net_Proceeds = max(net_proceeds, na.rm = TRUE),
+    Mean_ROI = round(mean(ROI, na.rm = TRUE),1),
+    Probability_Beats_Investor = round(mean(net_proceeds > net_investor_proceeds),3)
+  ) %>%
+  mutate(repair_level = case_when(
+    repair_level == "Minimal" ~ "Minimal Renovations",
+    repair_level == "Moderate" ~ "Moderate Renovations",
+    repair_level == "Full" ~ "Full Remodel",
+    TRUE ~ repair_level),
+    repair_level = factor(repair_level, c("Bare Minimum", "Minimal Renovations", "Moderate Renovations", "Full Remodel" ))
+  ) %>%
+  arrange(repair_level)
+
+colnames(summary_repair) <- c("Renovation Level", "Mean Net", "Median Net", "SD Net", "Min Net", "Max Net", "Mean ROI", "Prob Beat Investor")
+
+kable(summary_repair, caption = "Summary Statistics by Renovation Level")
+```
+
+### Net Proceeds by Renovation Level
+
+```{r}
+# plotting net proceeds by renovation level
+
+simulation_results %>%
+  mutate(repair_level = case_when(
+    repair_level == "Minimal" ~ "Minimal Renovations",
+    repair_level == "Moderate" ~ "Moderate Renovations",
+    repair_level == "Full" ~ "Full Remodel",
+    TRUE ~ repair_level),
+    repair_level = factor(repair_level, c("Bare Minimum", "Minimal Renovations", 
+                                          "Moderate Renovations", "Full Remodel"))) %>%
+  ggplot(aes(x = net_proceeds, fill = repair_level)) +
+    geom_histogram(bins = 50, alpha = 0.6, color = "black", position = "identity") +
+    scale_x_continuous(labels = scales::comma) +
+    facet_wrap(~repair_level, scales = "fixed") +
+    theme_minimal() +
+    labs(
+      title = "Net Proceeds Distribution by Renoavation Level",
+      x = "Net Proceeds ($)",
+      y = "Frequency",
+      fill = "Renovation Level"
+    )
+```
+
+### Probability of Beating the Investor Offer by Repair Level
+
+```{r}
+ggplot(summary_repair, aes(x = `Renovation Level`, y = `Prob Beat Investor`)) +
+  stat_summary(fun = mean, geom = "bar", fill = "#A8D5BA") +
+  theme_minimal() +
+  labs(
+    title = "Probability of Beating Investor Offer by Renovation Level",
+    x = "Renovation Level",
+    y = "Probability"
+  )
+```
+
+## Conclusion
